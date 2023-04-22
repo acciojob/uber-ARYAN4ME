@@ -9,38 +9,23 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerId;
+    private int CustomerId;
+
     private String mobile;
     private String password;
 
-    //    ----------------mapped by tripBooking ------------
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<TripBooking> tripBookingList = new ArrayList<>();
 
     public Customer() {
-
-    }
-
-    public Customer(int customerId, String mobile, String password) {
-        this.customerId = customerId;
-        this.mobile = mobile;
-        this.password = password;
-    }
-
-    public List<TripBooking> getTripBookingList() {
-        return tripBookingList;
-    }
-
-    public void setTripBookingList(List<TripBooking> tripBookingList) {
-        this.tripBookingList = tripBookingList;
     }
 
     public int getCustomerId() {
-        return customerId;
+        return CustomerId;
     }
 
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        CustomerId = customerId;
     }
 
     public String getMobile() {
@@ -58,4 +43,13 @@ public class Customer {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
+    }
+
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
+    }
+
 }

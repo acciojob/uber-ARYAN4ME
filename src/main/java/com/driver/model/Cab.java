@@ -4,46 +4,53 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="cab")
-public class Cab{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int cabId;
-    private int perKmRate;
-    private boolean available;
-    @OneToOne(mappedBy = "cab",cascade = CascadeType.ALL)
-    Driver driver;
+public class Cab {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int id;
 
-    public Cab(){
+        private int perKmRate;
 
-    }
+        //Mapping cab and driver  (parent -- cab , child -- driver )
 
-    public Cab(int cabId, int perKmRate, boolean available) {
-        this.cabId = cabId;
-        this.perKmRate = perKmRate;
-        this.available = available;
-    }
+        @OneToOne(mappedBy = "cab" , cascade = CascadeType.ALL)
+        private Driver driver;
 
-    public int getCabId() {
-        return cabId;
-    }
 
-    public void setCabId(int cabId) {
-        this.cabId = cabId;
-    }
+        public Cab() {
+        }
 
-    public int getPerKmRate() {
-        return perKmRate;
-    }
+        private boolean available;
 
-    public void setPerKmRate(int perKmRate) {
-        this.perKmRate = perKmRate;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public boolean getAvailable() {
-        return available;
-    }
+        public void setId(int id) {
+            this.id = id;
+        }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+        public int getPerKmRate() {
+            return perKmRate;
+        }
+
+        public void setPerKmRate(int perKmRate) {
+            this.perKmRate = perKmRate;
+        }
+
+        public boolean getAvailable() {
+            return available;
+        }
+
+        public void setAvailable(boolean available) {
+            this.available = available;
+        }
+
+        public Driver getDriver() {
+            return driver;
+        }
+
+        public void setDriver(Driver driver) {
+            this.driver = driver;
+        }
 }

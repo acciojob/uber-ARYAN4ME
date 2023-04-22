@@ -10,33 +10,21 @@ public class Driver{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int driverId;
-    private String  mobile;
+
+    private String mobile;
     private String password;
-//    ----------------join with cab ----------------
+
+
+
+    //Mapping cab and driver  (parent -- cab , child -- driver )
+
     @OneToOne
     @JoinColumn
     private Cab cab;
-//    ----------------mapped by tripBooking ------------
-    @OneToMany(mappedBy = "driver",cascade = CascadeType.ALL)
+
+    // in driver --parent ,   child -- trip booking   (many to one)
+    @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
     private List<TripBooking> tripBookingList = new ArrayList<>();
-
-    public Driver(){
-
-    }
-
-    public Driver(int driverId, String  mobile, String password) {
-        this.driverId = driverId;
-        this.mobile = mobile;
-        this.password = password;
-    }
-
-    public List<TripBooking> getTripBookingList() {
-        return tripBookingList;
-    }
-
-    public void setTripBookingList(List<TripBooking> tripBookingList) {
-        this.tripBookingList = tripBookingList;
-    }
 
     public Cab getCab() {
         return cab;
@@ -44,6 +32,9 @@ public class Driver{
 
     public void setCab(Cab cab) {
         this.cab = cab;
+    }
+
+    public Driver() {
     }
 
     public int getDriverId() {
@@ -69,4 +60,13 @@ public class Driver{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<TripBooking> getTripBookingList() {
+        return tripBookingList;
+    }
+
+    public void setTripBookingList(List<TripBooking> tripBookingList) {
+        this.tripBookingList = tripBookingList;
+    }
+
 }
